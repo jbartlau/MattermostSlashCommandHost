@@ -43,11 +43,12 @@ namespace MattermostSlashCommandHost.Controllers
                 }
 
                 SlashCommandResponse response = new SlashCommandResponse() { response_type = "in_channel" };
-                string meetingId = parser.Parameters["text"].Replace("-", String.Empty);
+                string rawMeetingId = parser.Parameters["text"];
+                string meetingId = rawMeetingId.Replace("-", String.Empty);
                 if (Regex.IsMatch(meetingId, @"m\d+"))
                 {
                     string meetingUrl = $"https://go.blizz.com/join/{meetingId}";
-                    response.text = $"{parser.Parameters["user_name"]} invites you to join a [blizz Meeting]({meetingUrl})";
+                    response.text = $"{parser.Parameters["user_name"]} invites you to join [blizz Meeting {rawMeetingId}]({meetingUrl})";
                     return Ok(response);
                 }
                 else
