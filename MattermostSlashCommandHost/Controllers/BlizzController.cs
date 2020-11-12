@@ -47,14 +47,14 @@ namespace MattermostSlashCommandHost.Controllers
                 string meetingId = rawMeetingId.Replace("-", String.Empty);
                 if (Regex.IsMatch(meetingId, @"m\d+"))
                 {
-                    string meetingUrl = $"https://go.blizz.com/join/{meetingId}";
-                    response.text = $"{parser.Parameters["user_name"]} invites you to join [blizz Meeting {rawMeetingId}]({meetingUrl})";
+                    string meetingUrl = $"https://meeting.teamviewer.com/join/{meetingId}";
+                    response.text = $"{parser.Parameters["user_name"]} invites you to join [TeamViewer Meeting {rawMeetingId}]({meetingUrl})";
                     return Ok(response);
                 }
                 else
                 {
                     response.response_type = "";
-                    response.text = "Invalid syntax, use `/blizz <meeting-id>` as trigger";
+                    response.text = "Invalid syntax, use `/tvm <meeting-id>` as trigger";
                     return Ok(response);
                 }
             }
